@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using SportsStore.WebUI.Models;
+using SportsStore.WebUI.Models;
+
 namespace SportsStore.WebUI.Controllers
 {
     public class ProductController : Controller
@@ -54,7 +55,8 @@ namespace SportsStore.WebUI.Controllers
                     TotalItems =category == null ?
                             repository.Products.Count() :
                             repository.Products.Where(e => e.Category ==
-                            category).Count()
+                            category).Count()
+
                 },
                 CurrentCategory = category
             };

@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using Ninject;using Moq;
+using Ninject;
+using Moq;
 using SportsStore.Domain.Abstract;
 using SportsStore.Domain.Entities;
 using SportsStore.Domain.Concrete;
+using System.Configuration;
 
 namespace SportsStore.WebUI.Infrastructure
 {
@@ -29,7 +31,7 @@ namespace SportsStore.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IProductRepository>().To<EFProductRepository>();
-        }
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
+           }
     }
 }

@@ -12,6 +12,8 @@ namespace SportsStore.WebUI.App_Start
     using Ninject.Web.Common;
     using Domain.Abstract;
     using Domain.Concrete;
+    using System.Configuration;
+
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
@@ -62,7 +64,14 @@ namespace SportsStore.WebUI.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IProductRepository>().To<EFProductRepository>();            
+            kernel.Bind<IProductRepository>().To<EFProductRepository>();
+            EmailSettings emailSetting = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSetting);
+
+
         }
     }
 }

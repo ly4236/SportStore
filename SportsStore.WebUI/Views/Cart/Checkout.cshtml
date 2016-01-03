@@ -6,14 +6,15 @@
 
 <h2>Check out now</h2>
 <p>Please enter your details, and we'll ship your goods right away!</p>
+@Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-    <h3>Ship to</h3>
+    <h3>收货人</h3>
     <div class="form-group">
         @Html.LabelFor(x=>x.Name, new { @class = "control-label" })
         @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
     </div>
-    <h3>Address</h3>
+    <h3>地址</h3>
     foreach (var property in ViewData.ModelMetadata.Properties)
     {
         if (property.PropertyName != "Name" && property.PropertyName !=
@@ -27,14 +28,7 @@
         </div>
         }
     }
-
-    <h3>Options</h3>
-    <div class="checkbox">
-        <label>
-            @Html.EditorFor(x => x.GiftWrap)
-            Gift wrap these items
-        </label>
-    </div>
+    
     <div class="text-center">
         <input class="btn btn-primary" type="submit" value="Complete
 order" />
